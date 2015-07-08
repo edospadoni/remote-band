@@ -24,7 +24,9 @@
     [self.statusItem setAction:@selector(togglePopup:)];
     
     self.popover = [[NSPopover alloc] init];
-    self.popover.contentViewController = [[RemoteBandViewController alloc] initWithNibName:@"RemoteBandViewController" bundle:nil];
+    RemoteBandViewController * rbvc = [[RemoteBandViewController alloc] initWithNibName:@"RemoteBandViewController" bundle:nil];
+    self.popover.contentViewController = rbvc;
+    [rbvc viewDidLoad];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

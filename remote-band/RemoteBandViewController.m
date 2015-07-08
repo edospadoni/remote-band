@@ -29,12 +29,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
     
     self.midiDeviceManager = [MIKMIDIDeviceManager sharedDeviceManager];
     [self.midiDeviceManager addObserver:self forKeyPath:@"availableDevices" options:NSKeyValueObservingOptionInitial context:NULL];
     [self.midiDeviceManager addObserver:self forKeyPath:@"virtualSources" options:NSKeyValueObservingOptionInitial context:NULL];
     [self.midiDeviceManager addObserver:self forKeyPath:@"virtualDestinations" options:NSKeyValueObservingOptionInitial context:NULL];
+    
+    
+    [self setDevice:self.availableDevices[[self.availableDevices count]-1]];
 }
 
 - (IBAction)quit:(NSButton *)sender {
@@ -89,27 +91,38 @@
     NSDictionary *activeApp = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *activeAppName = [activeApp objectForKey:@"NSApplicationName"];
     
+    // write to console the hash of your MIDI button
+    NSLog(@"Command Hash: %@", command.data.description);
+    
+    // map the command hash to relative GarageBand actions
+    NSDictionary *mapMIDI = @{
+        @"Record"   : @"<b00f0e45>",
+        @"Play"     : @"<b00f0e44>",
+        @"Stop"     : @"<b00f0e43>",
+        @"Right"    : @"<b00f0d43>",
+        @"Left"     : @"<b00f0d41>",
+        @"Up"       : @"<b00f0d44>",
+        @"Down"     : @"<b00f0d40>",
+        @"Center"   : @"<b00f0d42>"
+    };
+    
     if([activeAppName isEqualToString:@"GarageBand"]) {
     
-        NSString *commandView;
-        if([command.data.description isEqualToString:@"<b00f0e45>"]) {
-            commandView = @"Record";
-            
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Record"]]) {
+
             // R
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)15, true);
             CGEventPost(kCGSessionEventTap, e);
             CFRelease(e);
         }
-        if([command.data.description isEqualToString:@"<b00f0e44>"]) {
-            commandView = @"Play";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Play"]]) {
             
             // spacebar
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)49, true);
             CGEventPost(kCGSessionEventTap, e);
             CFRelease(e);
         }
-        if([command.data.description isEqualToString:@"<b00f0e43>"]) {
-            commandView = @"Stop";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Stop"]]) {
             
             // return
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)36, true);
@@ -117,16 +130,14 @@
             CFRelease(e);
         }
         
-        if([command.data.description isEqualToString:@"<b00f0d43>"]) {
-            commandView = @"Right";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Right"]]) {
             
             // right
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)124, true);
             CGEventPost(kCGSessionEventTap, e);
             CFRelease(e);
         }
-        if([command.data.description isEqualToString:@"<b00f0d41>"]) {
-            commandView = @"Left";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Left"]]) {
             
             // left
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)123, true);
@@ -134,16 +145,14 @@
             CFRelease(e);
         }
         
-        if([command.data.description isEqualToString:@"<b00f0d44>"]) {
-            commandView = @"Up";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Up"]]) {
             
             // up
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)126, true);
             CGEventPost(kCGSessionEventTap, e);
             CFRelease(e);
         }
-        if([command.data.description isEqualToString:@"<b00f0d40>"]) {
-            commandView = @"Down";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Down"]]) {
             
             // down
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)125, true);
@@ -151,8 +160,7 @@
             CFRelease(e);
         }
         
-        if([command.data.description isEqualToString:@"<b00f0d42>"]) {
-            commandView = @"Center";
+        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Center"]]) {
             
             // down
             CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)125, true);
@@ -165,7 +173,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    NSLog(@"%@'s %@ changed to: %@", object, keyPath, [object valueForKeyPath:keyPath]);
+    // NSLog(@"%@'s %@ changed to: %@", object, keyPath, [object valueForKeyPath:keyPath]);
 }
 
 #pragma mark - Devices
