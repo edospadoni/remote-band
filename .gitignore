@@ -1,4 +1,6 @@
-remote-band.xcodeproj/xcuserdata/
-remote-band.xcodeproj/project.xcworkspace/xcshareddata/
-remote-band.xcodeproj/project.xcworkspace/xcuserdata/
+Remote Band.xcodeproj/xcuserdata/
+Remote Band.xcodeproj/project.xcworkspace/xcshareddata/
+Remote Band.xcodeproj/project.xcworkspace/xcuserdata/
 .DS_Store
+.gitmodules
+Frameworks/*

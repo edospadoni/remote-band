@@ -56,7 +56,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C85614D21B49C35C008945E8 /* remote-band.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "remote-band.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C85614D21B49C35C008945E8 /* Remote Band.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remote Band.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85614D61B49C35C008945E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C85614D71B49C35C008945E8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C85614D81B49C35C008945E8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		C85614D31B49C35C008945E8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C85614D21B49C35C008945E8 /* remote-band.app */,
+				C85614D21B49C35C008945E8 /* Remote Band.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,9 +134,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C85614D11B49C35C008945E8 /* remote-band */ = {
+		C85614D11B49C35C008945E8 /* Remote Band */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C85614EF1B49C35C008945E8 /* Build configuration list for PBXNativeTarget "remote-band" */;
+			buildConfigurationList = C85614EF1B49C35C008945E8 /* Build configuration list for PBXNativeTarget "Remote Band" */;
 			buildPhases = (
 				C85614CE1B49C35C008945E8 /* Sources */,
 				C85614CF1B49C35C008945E8 /* Frameworks */,
@@ -148,9 +148,9 @@
 			dependencies = (
 				C85615011B49C3B4008945E8 /* PBXTargetDependency */,
 			);
-			name = "remote-band";
+			name = "Remote Band";
 			productName = "remote-band";
-			productReference = C85614D21B49C35C008945E8 /* remote-band.app */;
+			productReference = C85614D21B49C35C008945E8 /* Remote Band.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -167,7 +167,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C85614CD1B49C35C008945E8 /* Build configuration list for PBXProject "remote-band" */;
+			buildConfigurationList = C85614CD1B49C35C008945E8 /* Build configuration list for PBXProject "Remote Band" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -186,7 +186,7 @@
 			);
 			projectRoot = "";
 			targets = (
-				C85614D11B49C35C008945E8 /* remote-band */,
+				C85614D11B49C35C008945E8 /* Remote Band */,
 			);
 		};
 /* End PBXProject section */
@@ -340,7 +340,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "remote-band/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Remote Band";
 			};
 			name = Debug;
 		};
@@ -351,14 +351,14 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "remote-band/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Remote Band";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C85614CD1B49C35C008945E8 /* Build configuration list for PBXProject "remote-band" */ = {
+		C85614CD1B49C35C008945E8 /* Build configuration list for PBXProject "Remote Band" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C85614ED1B49C35C008945E8 /* Debug */,
@@ -367,7 +367,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C85614EF1B49C35C008945E8 /* Build configuration list for PBXNativeTarget "remote-band" */ = {
+		C85614EF1B49C35C008945E8 /* Build configuration list for PBXNativeTarget "Remote Band" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C85614F01B49C35C008945E8 /* Debug */,
