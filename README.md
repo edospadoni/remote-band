@@ -35,7 +35,7 @@ git submodule add https://github.com/mixedinkey-opensource/MIKMIDI.git Framework
 * Press ``Build`` or ``⌘+B``
 * Press ``Run`` or ``⌘+R``
 
-An icon (like this: ![alt tag](http://edoardospadoni.it/remote-band/controlIcon.png)) should appear on the status bar. Done :thumbsup:
+An icon should appear on the status bar. Done :thumbsup:
 
 ### Use
 If the MIDI device is not automatically added, click on the status bar icon to open the ``remote-band`` app and choose the correct device on the list.
