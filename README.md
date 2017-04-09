@@ -1,4 +1,4 @@
-# remote-band
+# Remote Band
 
 ### Description
 This is a GarageBand wrapper that maps the transport buttons of MIDI device to the respective GarageBand functions.
