@@ -64,7 +64,7 @@
     if (!source) return;
     id token = [self.connectionTokensForSources objectForKey:source];
     if (!token) return;
-    [self.midiDeviceManager disconnectInput:source forConnectionToken:token];
+    [self.midiDeviceManager disconnectConnectionForToken:token];
 }
 
 - (void)connectToDevice:(MIKMIDIDevice *)device

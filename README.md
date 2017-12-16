@@ -29,7 +29,7 @@ For the build process follow this steps:
 * Install **MIKMIDI** library (thanks [MIKMIDI] :blush: )
 ```sh
 cd remote-band
-git submodule add https://github.com/mixedinkey-opensource/MIKMIDI.git Frameworks/MIKMIDI
+git submodule init && git submodule update
 ```
 * Open ``remote-band.xcodeproj``
 * Press ``Build`` or ``⌘+B``
