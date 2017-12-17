@@ -5,23 +5,23 @@ This is a GarageBand wrapper that maps the transport buttons of MIDI device to t
 
 ### Settings
 In the ``RemoteBandViewController.m`` modify the ``NSDictionary`` object called ``mapMIDI`` and insert your hash command obtained by
-```sh
+```objc
 NSLog(@"Command Hash: %@", command.data.description);
 ```
 The ``mapMIDI`` object is:
-```sh
- NSDictionary *mapMIDI = @{
-        @"Record"   : @"<b00f0e45>",
-        @"Play"     : @"<b00f0e44>",
-        @"Stop"     : @"<b00f0e43>",
-        @"Right"    : @"<b00f0d43>",
-        @"Left"     : @"<b00f0d41>",
-        @"Up"       : @"<b00f0d44>",
-        @"Down"     : @"<b00f0d40>",
-        @"Center"   : @"<b00f0d42>"
+```objc
+    NSDictionary *mapMIDI = @{
+        @"<b00f0e45>": @(kVK_ANSI_R), //record
+        @"<b00f0e44>": @(kVK_Space), //play
+        @"<b00f0e43>": @(kVK_Return), //stop
+        @"<b00f0d43>": @(kVK_RightArrow),
+        @"<b00f0d41>": @(kVK_LeftArrow),
+        @"<b00f0d44>": @(kVK_UpArrow),
+        @"<b00f0d40>": @(kVK_DownArrow),
+        @"<b00f0d42>": @(kVK_DownArrow),
     };
 ```
-For each GarageBand actions, the relative hash command (the button pressed on the MIDI device) is mapped.
+For each GarageBand hotkey, the relative hash command (the button pressed on the MIDI device) is mapped.
 
 ### Build
 For the build process follow this steps:
