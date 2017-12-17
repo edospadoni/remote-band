@@ -8,6 +8,7 @@
 
 #import "RemoteBandViewController.h"
 #import <MIKMIDI/MIKMIDI.h>
+#import <Carbon/Carbon.h>
 
 @interface RemoteBandViewController ()
 
@@ -90,85 +91,35 @@
 {
     NSDictionary *activeApp = [[NSWorkspace sharedWorkspace] activeApplication];
     NSString *activeAppName = [activeApp objectForKey:@"NSApplicationName"];
+    NSString *commandHash = command.data.description;
     
     // write to console the hash of your MIDI button
-    NSLog(@"Command Hash: %@", command.data.description);
+    NSLog(@"Command Hash: %@", commandHash);
     
+    if (![activeAppName isEqual:@"GarageBand"] || commandHash == nil) {
+        return;
+    }
+
     // map the command hash to relative GarageBand actions
     NSDictionary *mapMIDI = @{
-        @"Record"   : @"<b00f0e45>",
-        @"Play"     : @"<b00f0e44>",
-        @"Stop"     : @"<b00f0e43>",
-        @"Right"    : @"<b00f0d43>",
-        @"Left"     : @"<b00f0d41>",
-        @"Up"       : @"<b00f0d44>",
-        @"Down"     : @"<b00f0d40>",
-        @"Center"   : @"<b00f0d42>"
+        @"<b00f0e45>": @(kVK_ANSI_R), //record
+        @"<b00f0e44>": @(kVK_Space), //play
+        @"<b00f0e43>": @(kVK_Return), //stop
+        @"<b00f0d43>": @(kVK_RightArrow),
+        @"<b00f0d41>": @(kVK_LeftArrow),
+        @"<b00f0d44>": @(kVK_UpArrow),
+        @"<b00f0d40>": @(kVK_DownArrow),
+        @"<b00f0d42>": @(kVK_DownArrow),
     };
     
-    if([activeAppName isEqualToString:@"GarageBand"]) {
-    
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Record"]]) {
-
-            // R
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)15, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Play"]]) {
-            
-            // spacebar
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)49, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Stop"]]) {
-            
-            // return
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)36, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Right"]]) {
-            
-            // right
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)124, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Left"]]) {
-            
-            // left
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)123, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Up"]]) {
-            
-            // up
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)126, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Down"]]) {
-            
-            // down
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)125, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
-        
-        if([command.data.description isEqualToString:[mapMIDI objectForKey:@"Center"]]) {
-            
-            // down
-            CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)125, true);
-            CGEventPost(kCGSessionEventTap, e);
-            CFRelease(e);
-        }
+    NSNumber *keycode = mapMIDI[commandHash];
+    if (keycode == nil) {
+        return;
     }
     
+    CGEventRef e = CGEventCreateKeyboardEvent (NULL, (CGKeyCode)keycode.integerValue, true);
+    CGEventPost(kCGSessionEventTap, e);
+    CFRelease(e);
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
